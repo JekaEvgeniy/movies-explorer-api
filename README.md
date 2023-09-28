@@ -22,4 +22,4 @@ Backend ***___https://api.mmm.nomoredomainsrocks.ru/___***
 `npm run lint` - проверка eslint
 
 ## Чеклист
-https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/index.html
+* [Ссылка на чеклист](https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/index.html)
