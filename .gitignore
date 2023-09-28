@@ -10,6 +10,8 @@ npm-debug.log*
 /.pnp
 .pnp.js
 .env
+_*.*
+/_*
 # Optional npm cache directory
 .npm
 # testing
@@ -22,6 +24,8 @@ npm-debug.log*
 .DS_Store
 .idea
 .vscode
+.idea/
+.vscode/
 .env.local
 .env.development.local
 .env.test.local
