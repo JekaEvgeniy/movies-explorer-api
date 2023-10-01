@@ -4,6 +4,8 @@ https://mongoosejs.com/docs/validation.html
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+// в ТЗ Поля схемы movie:trailerLink, а в разделе "Создайте роуты и контроллеры" уже trailer
+
 const movieSchema = new mongoose.Schema({
   country: {
     type: String,
