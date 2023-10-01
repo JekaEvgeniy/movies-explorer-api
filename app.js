@@ -17,17 +17,17 @@ const app = express();
 const { PORT = 3000, DATA_BASE = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 
 // for local host
-app.use(cors());
+// app.use(cors());
 
 // for server
-// app.use(cors({
-//   origin: [
-//     'https://mmm.nomoredomainsrocks.ru',
-//     'http://mmm.nomoredomainsrocks.ru',
-//     'http://localhost:3000',
-//   ],
-//   credentials: true,
-// }));
+app.use(cors({
+  origin: [
+    'https://dip.nomoredomainsrocks.ru',
+    'http://dip.nomoredomainsrocks.ru',
+    'http://localhost:3000',
+  ],
+  credentials: true,
+}));
 
 mongoose.connect(DATA_BASE, {
   useNewUrlParser: true,
@@ -47,5 +47,5 @@ app.use(errors()); // for celebrate
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log('listen port 3000');
+  // console.log('listen port 3000');
 });
