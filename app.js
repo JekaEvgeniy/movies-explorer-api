@@ -47,5 +47,5 @@ app.use(errors()); // for celebrate
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  // console.log('listen port 3000');
+  console.log('listen port 3000');
 });
