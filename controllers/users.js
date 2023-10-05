@@ -82,11 +82,11 @@ const createUser = (req, res, next) => {
 };
 
 const updateCurrentUser = (req, res, next) => {
-  const { name } = req.body;
+  const { name, email } = req.body;
 
   User.findByIdAndUpdate(
     req.user._id,
-    { name },
+    { name, email },
     { new: true, runValidators: true },
   )
     .then((user) => {
@@ -100,6 +100,8 @@ const updateCurrentUser = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
+      } else if (err.code === 11000) {
+        next(new ConflictError('Пользователь с таким email уже существует'));
       } else {
         next(err);
       }
@@ -107,7 +109,7 @@ const updateCurrentUser = (req, res, next) => {
 };
 
 const login = (req, res, next) => {
-  console.log('POST /login');
+  // console.log('POST /login');
   if (!req.body) {
     throw new ForbiddenError('Неправильный логин/пароль');
   }
