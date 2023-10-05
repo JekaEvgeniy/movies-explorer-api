@@ -11,7 +11,7 @@ const getMovies = (req, res, next) => {
       res.send(movies);
     })
     .catch((err) => {
-      next(new BadRequestError('Ошибка при получении списка фильмов', err));
+      next(err);
     });
 };
 
@@ -49,7 +49,7 @@ const createMovie = (req, res, next) => {
       if (err.name === 'ValidationError') {
         next(new BadRequestError('Введены некорректные данные'));
       } else {
-        next('Ошибка добавления фильма', err);
+        next(err);
       }
     });
 };
