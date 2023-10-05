@@ -131,6 +131,16 @@ const login = (req, res, next) => {
     });
 };
 
+// Токен будет хранится в localStorage
+// const logout = (req, res) => {
+//   const token = localStorage.getItem('jwt');
+//   if (token) {
+//     localStorage.removeItem('jwt');
+//     res.send({ message: 'Вы вышли из системы' });
+//   }
+// };
+
 module.exports = {
+  // logout,
   createUser, updateCurrentUser, login, getCurrentUser,
 };

@@ -3,7 +3,7 @@ const { celebrate, Joi } = require('celebrate');
 
 const userRoutes = require('./users');
 const movieRoutes = require('./movies');
-const { createUser, login } = require('../controllers/users');
+const { createUser, login, logout } = require('../controllers/users');
 const auth = require('../widdlewares/auth');
 const NotFoundError = require('../errors/NotFoundError');
 
@@ -36,6 +36,7 @@ router.use(auth);
 
 router.use('/users', userRoutes);
 router.use('/movies', movieRoutes);
+// router.use('/signout', logout);
 
 router.use('*', (req, res, next) => {
   next(new NotFoundError('Запрашиваемой страницы нет!'));
