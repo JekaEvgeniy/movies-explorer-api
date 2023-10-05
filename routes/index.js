@@ -15,7 +15,7 @@ router.post(
     body: Joi.object().keys({
       password: Joi.string().required(),
       email: Joi.string().email().required(),
-      name: Joi.string().min(2).max(30),
+      name: Joi.string().min(2).max(30).required(),
     }),
   }),
   createUser,
