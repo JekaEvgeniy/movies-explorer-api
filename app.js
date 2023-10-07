@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const { errors } = require('celebrate');
-const cookies = require('cookie-parser');
+// const cookies = require('cookie-parser');
 const helmet = require('helmet');
 
 const router = require('./routes');
@@ -37,7 +37,7 @@ mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://127.0.0.1:27
 });
 
 app.use(express.json());
-app.use(cookies());
+// app.use(cookies());
 
 app.use(requestLogger); // подключаем логгер запросов
 
