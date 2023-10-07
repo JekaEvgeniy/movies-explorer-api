@@ -32,7 +32,7 @@ app.use(cors({
   credentials: true,
 }));
 
-mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://127.0.0.1:27017/mestodb', {
+mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://127.0.0.1:27017/bitfilmsdb', {
   useNewUrlParser: true,
 });
 
