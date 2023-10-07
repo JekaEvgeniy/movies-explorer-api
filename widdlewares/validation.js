@@ -1,3 +1,9 @@
+/* Articles:
+Joi — awesome code validation for Node.js and Express
+https://softchris.github.io/pages/joi.html#introducing-joi
+https://www.freecodecamp.org/news/how-to-validate-urls-in-javascript/
+*/
+
 const { celebrate, Joi } = require('celebrate');
 
 const validateSignUp = celebrate({
@@ -36,9 +42,17 @@ const validateDeleteMovie = celebrate({
   }),
 });
 
+const validateUpdateCurrentUser = celebrate({
+  body: Joi.object().keys({
+    name: Joi.string().required().min(2).max(30),
+    email: Joi.string().required().email(),
+  }),
+});
+
 module.exports = {
   validateSignUp,
   validateSignIn,
   validateCreateMovie,
   validateDeleteMovie,
+  validateUpdateCurrentUser,
 };
