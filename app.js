@@ -15,8 +15,7 @@ const app = express();
 
 // подключаемся к серверу mongo
 
-const { PORT = 3000, DATA_BASE = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
-
+const { NODE_ENV, PORT = 3000, DATA_BASE } = process.env;
 app.use(helmet());
 
 // for local host
@@ -32,7 +31,7 @@ app.use(cors({
   credentials: true,
 }));
 
-mongoose.connect(DATA_BASE, {
+mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://127.0.0.1:27017/mestodb', {
   useNewUrlParser: true,
 });
 
