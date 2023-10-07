@@ -4,7 +4,6 @@ const { codeErrors, codeSuccess } = require('../vars/data');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ConflictError = require('../errors/ConflictError');
-const ForbiddenError = require('../errors/ForbiddenError');
 const UnauthorizedError = require('../errors/UnauthorizedError');
 
 const User = require('../models/user');
@@ -36,25 +35,9 @@ const getCurrentUser = (req, res, next) => {
 const createUser = (req, res, next) => {
   // console.log('POST /signup >>> users.js > createUser');
 
-  if (!req.body) {
-    next(new BadRequestError('Введены некорректные данные'));
-  }
-
   const {
     name, email, password,
   } = req.body;
-
-  if (!email && !password && !name) {
-    // Делаем минимальную прповерку, т.к. все поля required
-    next(new BadRequestError('Все поля обязательны для заполнения'));
-  }
-
-  // User.findOne({ email })
-  //   .then((user) => {
-  //     if (user) {
-  //       next(new ConflictError('При регистрации указан email));
-  //     }
-  //   });
 
   bcrypt.hash(String(req.body.password), 10)
     .then((hash) => {
@@ -110,15 +93,7 @@ const updateCurrentUser = (req, res, next) => {
 
 const login = (req, res, next) => {
   // console.log('POST /login');
-  if (!req.body) {
-    throw new ForbiddenError('Неправильный логин/пароль');
-  }
-
   const { email, password } = req.body;
-
-  if (!email && !password) {
-    next(new BadRequestError('Поля email и password обязательны для заполнения'));
-  }
 
   return User.findUserByCredentials(email, password)
     .then((user) => {
