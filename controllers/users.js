@@ -36,7 +36,7 @@ const createUser = (req, res, next) => {
   // console.log('POST /signup >>> users.js > createUser');
 
   const {
-    name, email, password,
+    name, email,
   } = req.body;
 
   bcrypt.hash(String(req.body.password), 10)
