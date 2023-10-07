@@ -3,7 +3,6 @@ const Movie = require('../models/movies');
 const BadRequestError = require('../errors/BadRequestError');
 const NotFoundError = require('../errors/NotFoundError');
 const ForbiddenError = require('../errors/ForbiddenError');
-const ValidationError = require('../errors/ValidationError');
 
 const getMovies = (req, res, next) => {
   Movie.find({ owner: req.user._id })
@@ -68,7 +67,7 @@ const removeMovie = (req, res, next) => {
     })
     .catch((err) => {
       if (err.name === 'CastError') {
-        next(new ValidationError('Передан некорректный id фильма'));
+        next(new BadRequestError('Передан некорректный id фильма'));
       } else {
         next(err);
       }
