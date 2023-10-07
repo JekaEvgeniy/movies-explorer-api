@@ -8,14 +8,15 @@ const helmet = require('helmet');
 
 const router = require('./routes');
 const errorHandler = require('./widdlewares/error');
+const limiter = require('./widdlewares/rateLimit');
 const { requestLogger, errorLogger } = require('./widdlewares/logger');
 
 // const bodyParser = require('body-parser');
 const app = express();
 
 // подключаемся к серверу mongo
-
 const { NODE_ENV, PORT = 3000, DATA_BASE } = process.env;
+
 app.use(helmet());
 
 // for local host
@@ -39,6 +40,8 @@ app.use(express.json());
 app.use(cookies());
 
 app.use(requestLogger); // подключаем логгер запросов
+
+app.use(limiter);// подключаем rate-limiter
 
 app.use(router);
 
