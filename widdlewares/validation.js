@@ -2,6 +2,7 @@
 Joi — awesome code validation for Node.js and Express
 https://softchris.github.io/pages/joi.html#introducing-joi
 https://www.freecodecamp.org/news/how-to-validate-urls-in-javascript/
+https://www.digitalocean.com/community/tutorials/how-to-use-joi-for-node-api-schema-validation
 */
 
 const { celebrate, Joi } = require('celebrate');
