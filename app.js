@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const { errors } = require('celebrate');
 const cookies = require('cookie-parser');
+const helmet = require('helmet');
 
 const router = require('./routes');
 const errorHandler = require('./widdlewares/error');
@@ -15,6 +16,8 @@ const app = express();
 // подключаемся к серверу mongo
 
 const { PORT = 3000, DATA_BASE = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
+
+app.use(helmet());
 
 // for local host
 // app.use(cors());
