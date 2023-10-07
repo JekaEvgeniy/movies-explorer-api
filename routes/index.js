@@ -3,32 +3,22 @@ const { celebrate, Joi } = require('celebrate');
 
 const userRoutes = require('./users');
 const movieRoutes = require('./movies');
-const { createUser, login, logout } = require('../controllers/users');
+const { createUser, login } = require('../controllers/users');
 const auth = require('../widdlewares/auth');
 const NotFoundError = require('../errors/NotFoundError');
+const { validateSignUp, validateSignIn } = require('../widdlewares/validation');
 
 // https://regex101.com/
 // ТЗ: ПР15. Поле password не ограничено в длину, так как пароль хранится в виде хеша
 router.post(
   '/signup',
-  celebrate({
-    body: Joi.object().keys({
-      password: Joi.string().required(),
-      email: Joi.string().email().required(),
-      name: Joi.string().min(2).max(30).required(),
-    }),
-  }),
+  validateSignUp,
   createUser,
 );
 
 router.post(
   '/signin',
-  celebrate({
-    body: Joi.object().keys({
-      email: Joi.string().required().email(),
-      password: Joi.string().required(),
-    }),
-  }),
+  validateSignIn,
   login,
 );
 
