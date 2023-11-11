@@ -32,12 +32,52 @@ const getCurrentUser = (req, res, next) => {
     });
 };
 
+// const createUser = (req, res, next) => {
+//   // console.log('POST /signup >>> users.js > createUser');
+//   console.log('req.body', req.body);
+
+//   const {
+//     name, email,
+//   } = req.body;
+
+//   bcrypt.hash(String(req.body.password), 10)
+//     .then((hash) => {
+//       User.create({
+//         name, email, password: hash,
+//       })
+//         .then(() => {
+//           // res.status(codeSuccess.created).send(data);
+//           res.status(codeSuccess.created).send({
+//             data: {
+//               name, email,
+//             },
+//           });
+//         })
+//         .catch((err) => {
+//           if (err.name === 'ValidationError') {
+//             next(new BadRequestError(`Введены некорректные данные, ${err}`));
+//           }
+//           if (err.code === 11000) {
+//             next(new ConflictError('Пользователь с таким email уже существует'));
+//           }
+//           next(err);
+//         });
+//     });
+// };
+
 const createUser = (req, res, next) => {
   // console.log('POST /signup >>> users.js > createUser');
 
+  if (!req.body) {
+    next(new BadRequestError('Введены некорректные данные'));
+  }
+
   const {
-    name, email,
+    name, email, password,
   } = req.body;
+  if (!email && !password && !name) {
+    next(new BadRequestError('Все поля обязательны для заполнения'));
+  }
 
   bcrypt.hash(String(req.body.password), 10)
     .then((hash) => {
@@ -54,7 +94,7 @@ const createUser = (req, res, next) => {
         })
         .catch((err) => {
           if (err.name === 'ValidationError') {
-            next(new BadRequestError(`Введены некорректные данные, ${err}`));
+            next(new BadRequestError('Введены некорректные данные'));
           }
           if (err.code === 11000) {
             next(new ConflictError('Пользователь с таким email уже существует'));
