@@ -7,7 +7,7 @@
 [github](https://github.com/JekaEvgeniy/movies-explorer-api)
 
 ## Ссылки на проект
-IP 51.250.8.33
+IP 51.250.8.233
 Backend https://api.dip.nomoredomainsrocks.ru/
 Frontend https://dip.nomoredomainsrocks.ru/
 
