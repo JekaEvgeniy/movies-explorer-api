@@ -20,17 +20,17 @@ const { NODE_ENV, PORT = 3000, DATA_BASE } = process.env;
 app.use(helmet());
 
 // for local host
-// app.use(cors());
+app.use(cors());
 
 // for server
-app.use(cors({
-  origin: [
-    'https://dip.nomoredomainsrocks.ru',
-    'http://dip.nomoredomainsrocks.ru',
-    'http://localhost:3000',
-  ],
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: [
+//     'https://dip.nomoredomainsrocks.ru',
+//     'http://dip.nomoredomainsrocks.ru',
+//     'http://localhost:3000',
+//   ],
+//   credentials: true,
+// }));
 
 mongoose.connect(NODE_ENV === 'production' ? DATA_BASE : 'mongodb://127.0.0.1:27017/bitfilmsdb', {
   useNewUrlParser: true,
